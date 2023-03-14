@@ -3,9 +3,9 @@ import React, { useState } from "react"
 import { useRouter } from "next/navigation"
 
 export default function FormPost() {
+  const router = useRouter()
   const [title, setTitle] = useState("")
   //Create a submit psot
-  const router = useRouter()
   
   async function submitPost (e: React.FormEvent) {
     e.preventDefault()
@@ -16,17 +16,19 @@ export default function FormPost() {
     ) 
     const res = await data.json()
     router.refresh()
+    console.log('dgsgsd')
     if (!res.ok){console.log(res)
-     } }
-  return(
-  
+    }
+  }
+    return(
+      
   <form className=" bg-gray-500" onSubmit={submitPost}>
   <input className=" bg-gray-500"
     onChange={(e) => setTitle(e.target.value)}
     value={title}
     type="text"
   />
-  <button type="submit">post</button>
+  <button type="submit" onClick={submitPost}>post</button>
   
   </form>
   
